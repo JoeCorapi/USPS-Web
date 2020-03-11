@@ -16,18 +16,36 @@ namespace USPS_Web.Controllers
         static string strConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["MyCDSServer"].ToString();
         static CrmServiceClient svc = new CrmServiceClient(strConnectionString);
 
-        public List<Opportunity> Get()
+        //public List<Opportunity> Get()
+        //{
+        //    List<Opportunity> list = new List<Opportunity>();
+        //    QueryExpression queryOpportunity = new QueryExpression("opportunity");
+        //    queryOpportunity.ColumnSet.AllColumns = true;
+        //    EntityCollection opportunityCols = svc.RetrieveMultiple(queryOpportunity);
+        //    foreach (Entity opp in opportunityCols.Entities)
+        //    {
+        //        Opportunity obj = new Opportunity();
+        //        if (opp.Attributes["name"].ToString() != null)
+        //        {
+        //            obj.name = opp.Attributes["name"].ToString();
+        //        }
+        //        list.Add(obj);
+        //    }
+        //    return list;
+        //}
+
+        public List<Application> Get()
         {
-            List<Opportunity> list = new List<Opportunity>();
-            QueryExpression queryOpportunity = new QueryExpression("opportunity");
-            queryOpportunity.ColumnSet.AllColumns = true;
-            EntityCollection opportunityCols = svc.RetrieveMultiple(queryOpportunity);
-            foreach (Entity opp in opportunityCols.Entities)
+            List<Application> list = new List<Application>();
+            QueryExpression queryApplication = new QueryExpression("ss_application");
+            queryApplication.ColumnSet.AllColumns = true;
+            EntityCollection applicationCols = svc.RetrieveMultiple(queryApplication);
+            foreach (Entity app in applicationCols.Entities)
             {
-                Opportunity obj = new Opportunity();
-                if (opp.Attributes["name"].ToString() != null)
+                Application obj = new Application();
+                if (app.Attributes["ss_name"].ToString() != null)
                 {
-                    obj.name = opp.Attributes["name"].ToString();
+                    obj.name = app.Attributes["ss_name"].ToString();
                 }
                 list.Add(obj);
             }
