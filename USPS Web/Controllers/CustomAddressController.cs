@@ -28,6 +28,27 @@ namespace USPS_Web.Controllers
                 if (app.Attributes["ss_name"].ToString() != null)
                 {
                     obj.name = app.Attributes["ss_name"].ToString();
+                    obj.id = app.Id;
+                }
+                list.Add(obj);
+            }
+            return list;
+        }
+
+        public List<CustomAddress> Set()
+        {
+            List<CustomAddress> list = new List<CustomAddress>();
+            QueryExpression queryCustomAddress = new QueryExpression("ss_customaddress");
+            queryCustomAddress.ColumnSet.AllColumns = true;
+            //svc.Retrieve()
+            EntityCollection CustomAddressCols = svc.RetrieveMultiple(queryCustomAddress);
+            foreach (Entity app in CustomAddressCols.Entities)
+            {
+                CustomAddress obj = new CustomAddress();
+                if (app.Attributes["ss_name"].ToString() != null)
+                {
+                    obj.name = app.Attributes["ss_name"].ToString();
+                    obj.id 
                 }
                 list.Add(obj);
             }

@@ -8,5 +8,6 @@ namespace USPS_Web.Models
     public class CustomAddress
     {
         public string name { get; set; }
+        public Guid id { get; set; }
     }
 }

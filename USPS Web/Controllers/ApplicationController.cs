@@ -19,6 +19,7 @@ namespace USPS_Web.Controllers
         public List<Application> Get()
         {
             List<Application> list = new List<Application>();
+            Console.WriteLine(@"( ͡ʘ ͜ʖ ͡ʘ)");
             QueryExpression queryApplication = new QueryExpression("ss_application");
             queryApplication.ColumnSet.AllColumns = true;
             EntityCollection applicationCols = svc.RetrieveMultiple(queryApplication);
@@ -29,6 +30,7 @@ namespace USPS_Web.Controllers
                 {
                     obj.name = app.Attributes["ss_name"].ToString();
                 }
+                Console.WriteLine("UwU");
                 list.Add(obj);
             }
             return list;
