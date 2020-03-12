@@ -48,7 +48,6 @@ namespace USPS_Web.Controllers
                 if (app.Attributes["ss_name"].ToString() != null)
                 {
                     obj.name = app.Attributes["ss_name"].ToString();
-                    obj.id 
                 }
                 list.Add(obj);
             }

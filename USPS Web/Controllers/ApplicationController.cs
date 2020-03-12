@@ -19,7 +19,6 @@ namespace USPS_Web.Controllers
         public List<Application> Get()
         {
             List<Application> list = new List<Application>();
-            Console.WriteLine(@"( ͡ʘ ͜ʖ ͡ʘ)");
             QueryExpression queryApplication = new QueryExpression("ss_application");
             queryApplication.ColumnSet.AllColumns = true;
             EntityCollection applicationCols = svc.RetrieveMultiple(queryApplication);
@@ -29,11 +28,57 @@ namespace USPS_Web.Controllers
                 if (app.Attributes["ss_name"].ToString() != null)
                 {
                     obj.name = app.Attributes["ss_name"].ToString();
+                    obj.id =  app.Id;
+                    obj.type = app.FormattedValues["ss_applicationtype"].ToString();
+                    obj.createdon = app.Attributes["createdon"].ToString();
                 }
-                Console.WriteLine("UwU");
                 list.Add(obj);
             }
             return list;
         }
+        //public List<Application> Post()
+        //{
+        //    Guid newGuid = Guid.Parse(int id, [FromBody]string value);
+        //    svc.Update
+        //    List<Application> list = new List<Application>();
+        //    QueryExpression queryApplication = new QueryExpression("ss_application");
+        //    queryApplication.ColumnSet.AllColumns = true;
+        //    EntityCollection applicationCols = svc.RetrieveMultiple(queryApplication);
+        //    foreach (Entity app in applicationCols.Entities)
+        //    {
+        //        Application obj = new Application();
+        //        if (app.Attributes["ss_name"].ToString() != null)
+        //        {
+        //            obj.name = app.Attributes["ss_name"].ToString();
+        //            obj.id = app.Id;
+        //        }
+        //        list.Add(obj);
+        //    }
+        //    return list;
+        //}
+        //public List<Application> Put()
+        //{
+        //    Guid newGuid = Guid.Parse(int id, [FromBody]string value);
+        //    svc.Update
+        //    List<Application> list = new List<Application>();
+        //    QueryExpression queryApplication = new QueryExpression("ss_application");
+        //    queryApplication.ColumnSet.AllColumns = true;
+        //    EntityCollection applicationCols = svc.RetrieveMultiple(queryApplication);
+        //    foreach (Entity app in applicationCols.Entities)
+        //    {
+        //        Application obj = new Application();
+        //        if (app.Attributes["ss_name"].ToString() != null)
+        //        {
+        //            obj.name = app.Attributes["ss_name"].ToString();
+        //            obj.id = app.Id;
+        //            obj.type = app.FormattedValues["ss_applicationtype"].ToString();
+        //            obj.destination = app.FormattedValues["ss_destinationaddress"].ToString();
+        //        }
+        //        list.Add(obj);
+        //    }
+        //    return list;
+        //}
+
+
     }
 }
